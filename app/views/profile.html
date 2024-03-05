@@ -16,6 +16,7 @@
 <div class="payment-form">
   <h3 class="payment-header">Make payment?</h3>
   <form action="/pay" method="post">
+    <input name="session_token" value="{{ session_token }}" hidden />
     <div class="form-group">
       <div class="form-label">To:</div>
       <div class="form-input"><input name="recipient" type="text" /></div>

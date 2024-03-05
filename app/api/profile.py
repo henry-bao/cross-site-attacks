@@ -25,6 +25,7 @@ def profile(db, session, username):
         "profile",
         user=user,
         session_user=session_user,
+        session_token=session.get_id(),
     )
 
 @post('/aboutme')
@@ -32,6 +33,10 @@ def profile(db, session, username):
 def update_aboutme(db, session):
     user = get_user(db, session.get_username())
     aboutme = request.forms.get('aboutme')
+    print("\n")
+    print("[user]", user.username)
+    print("[aboutme]", aboutme)
+    print("\n")
     user.update_aboutme(aboutme)
     return template(
         "profile",

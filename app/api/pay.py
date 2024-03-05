@@ -37,7 +37,12 @@ def do_payment(db, session):
     elif (recipient['username'] == sender.username):
         response.status = 400
         error = "Cannot pay self."
+    elif session.get_id() != request.forms.get('session_token'):
+        print("[bad log] invalid session token", session.get_id(), request.forms.get('session_token'))
+        response.status = 400
+        error = "Invalid session token."
     else:
+        print("[good log] session token", session.get_id(), request.forms.get('session_token'))
         sender.debit_coins(payment_amount)
         db.execute(
             "UPDATE users SET coins={} WHERE users.username='{}'".format(
@@ -49,5 +54,6 @@ def do_payment(db, session):
         user=sender,
         session_user=sender,
         payment_error=error,
+        session_token=session.get_id(),
     )
 
