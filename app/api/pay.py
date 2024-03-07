@@ -28,19 +28,24 @@ def do_payment(db, session):
     if (sender.get_coins() < payment_amount):
         response.status = 400
         error = "Not enough funds."
+        print("\n\n\n\n" + error + "\n\n\n\n")
     elif (payment_amount < 0):
         response.status = 400
         error = "Payment amount cannot be negative."
+        print("\n\n\n\n" + error + "\n\n\n\n")
     elif (recipient is None):
         response.status = 400
         error = "Recipient {} does not exist.".format(request.forms.get('recipient'))
+        print("\n\n\n\n" + error + "\n\n\n\n")
     elif (recipient['username'] == sender.username):
         response.status = 400
         error = "Cannot pay self."
+        print("\n\n\n\n" + error + "\n\n\n\n")
     elif session.get_id() != request.forms.get('session_token'):
         print("[bad log] invalid session token", session.get_id(), request.forms.get('session_token'))
         response.status = 400
         error = "Invalid session token."
+        print("\n\n\n\n" + error + "\n\n\n\n")
     else:
         print("[good log] session token", session.get_id(), request.forms.get('session_token'))
         sender.debit_coins(payment_amount)
